@@ -1,0 +1,160 @@
+{
+  "version": "1.8.0",
+  "date": "2026-10-15",
+  "notes": [
+    "Reorganização modular completa do Front-End (camadas core, data, sync, features, ui, styles)",
+    "Camada única de dados (Data Repository Pattern): nenhuma tela acessa o armazenamento diretamente",
+    "Barramento central de eventos (EventBus) e Error Boundary para isolamento total de falhas",
+    "Correção de data local: eliminação do avanço indevido de datas após 21h (bug de UTC)",
+    "Controle de versão do esquema de dados (dataVersion: 1) com migrações defensivas",
+    "Segurança reforçada: rel=noopener noreferrer em links externos e allowBackup desativado no Android",
+    "Documentação técnica e testes automatizados de segurança do backend em nuvem com Supabase (BACKEND.md)"
+  ],
+  "apkUrl": "https://github.com/rodriguescrisostomo2353-sketch/cronograma-concursos/releases/latest/download/app-cronograma.apk",
+  "history": [
+    {
+      "version": "1.7.5",
+      "date": "2026-10-15",
+      "notes": [
+        "Eliminação total do congelamento de tela e vazamento de memória (redução de 8.4GB para < 2MB)",
+        "Nova funcionalidade: Biblioteca Virtual de Arquivos (organize, filtre e guarde seus PDFs de editais, apostilas e resumos)",
+        "Exportação e download individual ou em lote de todos os PDFs salvos na Biblioteca Virtual",
+        "Modo 100% Offline com fila de mutações: continue estudando sem internet e sincronize automaticamente ao reconectar",
+        "Carregamento do leitor de PDF estritamente sob demanda para economia extrema de memória RAM",
+        "Proteção anti-deadlock e memoização nas conexões do banco de dados local IndexedDB"
+      ]
+    },
+    {
+      "version": "1.7.4",
+      "date": "2026-10-15",
+      "notes": [
+        "Atualização de Performance Extrema: inicialização instantânea offline-first em menos de 1,5 segundo em qualquer aparelho",
+        "Carregamento sob demanda (Lazy Loading): bibliotecas pesadas (PDF.js, html2pdf, html2canvas e Supabase) agora carregam apenas quando necessárias ou em background ocioso",
+        "Motor de Persistência Assíncrona no IndexedDB com backup preventivo automático do localStorage e salvamento com debounce (500ms)",
+        "Sincronização em Nuvem Incremental: verificação rápida por data/hora (updatedAt) sem baixar dados duplicados a cada abertura",
+        "Renderização Otimizada sob demanda: acordeom inteligente de matérias e tópicos com redução drástica de elementos no DOM",
+        "Cache em memória (Memoization) de horas estudadas por matéria e tópico com resposta O(1) imediata",
+        "Painel de Tempo de Abertura em Ajustes > Diagnóstico com instrumentação real (performance.mark/measure) e histórico das 10 últimas aberturas",
+        "Atualização do Service Worker para o cache cronograma-concursos-v22 com navegação stale-while-revalidate ultrarrápida"
+      ]
+    },
+    {
+      "version": "1.7.3",
+      "date": "2026-10-14",
+      "notes": [
+        "Sistema completo de Backup & Restauração de dados: salvar e fazer upload de arquivos .json com todos os seus dados de estudos",
+        "Exportação estruturada com resumo visual: matérias, tópicos, cronogramas, sessões concluídas, prioridades, meta de concurso, horas de estudo e anotações",
+        "Restauração inteligente e segura: opção de Substituição Completa ou Mesclagem Não-Destrutiva sem perder nenhum dado já registrado",
+        "Garantia Zero Perda de Dados: criação de snapshot automático de emergência antes de qualquer restauração com botão 'Desfazer Restauração'",
+        "Pontos de Restauração Locais (Snapshots): crie cópias instantâneas na memória do dispositivo com restauração em 1 clique",
+        "Suporte completo a Drag & Drop (arrastar e soltar arquivo .json) e integração no menu 'Mais Opções' do mobile",
+        "Atualização do Service Worker para o cache cronograma-concursos-v21"
+      ]
+    },
+    {
+      "version": "1.7.2",
+      "date": "2026-10-14",
+      "notes": [
+        "Sincronização em Nuvem: resolução automática e transparente do erro de schema cache PostgREST (PGRST204) na tabela user_data",
+        "Persistência garantida dos logs de estudo (Horas de Estudo) mesmo em bases Supabase sem a coluna study_log, via fallback em auto_config.study_log",
+        "Compatibilidade bidirecional: detecção em tempo real e suporte nativo caso a coluna study_log seja adicionada via SQL Editor no Supabase",
+        "Painel de Diagnóstico atualizado com indicação de Modo de Sincronização (Nativo ou Transparente) e limpeza de pendências locais",
+        "Atualização do Service Worker para o cache cronograma-concursos-v20"
+      ]
+    },
+    {
+      "version": "1.7.1",
+      "date": "2026-10-14",
+      "notes": [
+        "Correção crítica: resolução do conflito de declaração de scripts e restauração total da inicialização do app",
+        "Ícone na aba do navegador (favicon) adicionado nas resoluções padrão e retina (192px e 512px)",
+        "Nova Aba 'Horas de Estudo': registro e controle preciso do tempo estudado por matéria e tópico com métricas em tempo real",
+        "Filtros de Período dinâmicos: navegação por Dia, Semana (segunda a domingo), Mês e Total",
+        "Rateio Dinâmico e Automático de Sessões do cronograma e registro rápido avulso",
+        "Histórico de Estudo por Tópico com edição e exclusão segura",
+        "Gráfico interativo e linha do tempo de estudos nos temas claro e escuro"
+      ]
+    },
+    {
+      "version": "1.7.0",
+      "date": "2026-10-14",
+      "notes": [
+        "Nova Aba 'Horas de Estudo': registro e controle preciso do tempo estudado por matéria e tópico",
+        "Filtros de Período dinâmicos (Dia, Semana, Mês e Total) e seletor nativo de data",
+        "Rateio Dinâmico e Automático de Sessões do cronograma"
+      ]
+    },
+    {
+      "version": "1.6.5",
+      "date": "2026-10-14",
+      "notes": [
+        "Correção total de '[object Object]' na lista de tópicos e matérias no mobile e datalists: Camada de Dados universal com nomeMateria(), idMateria() e textoSeguro()",
+        "Prevenção contra coerção de objetos em inputs com datalist (wizardTopicsDatalist e datalistSubjectTopics)",
+        "Novo Painel de Diagnóstico da Sincronização em Nuvem (Ajustes > Conta): status de configuração, usuário logado com UID, última sincronização, itens pendentes e último erro detalhado",
+        "Ferramentas ativas de teste: botão 'Testar Conexão' com leitura e gravação em tempo real na nuvem, 'Sincronizar Agora' bidirecional e 'Copiar Diagnóstico'",
+        "Sincronização offline-first aprimorada: download e mesclagem automática ao abrir o app logado e suporte local offline ao Supabase JS SDK",
+        "Exibição da data/hora exata do Build em Ajustes para conferência de versão no dispositivo",
+        "Limpeza automática de caches antigos no Service Worker (cache cronograma-concursos-v16) e backup preventivo de segurança no localStorage (backup v165)"
+      ]
+    },
+    {
+      "version": "1.6.4",
+      "date": "2026-10-14",
+      "notes": [
+        "Resolução definitiva do congelamento/falha de toques no mobile com isolamento de subsistemas no App.init e compatibilidade total com navegadores e WebViews Android antigos (fallback em MediaQueryList.addListener)",
+        "Correção total de matérias aparecendo como '[object Object]' ou 'object': implementação da Camada Única de Dados com nomeMateria(), idMateria() e normalizarMaterias() e auto-reparo de cronogramas existentes",
+        "Novo Assistente de Criação de Cronograma Manual em 3 Passos mobile-first: fluxo linear e intuitivo com rascunho persistente e sem necessidade de arrastar e soltar (drag-and-drop)",
+        "Menu 'Mais' (…) da barra inferior mobile 100% responsivo com abertura em bottom sheet por cima de todas as camadas, bloqueio de toque fantasma e fechamento pelo botão nativo de voltar do Android",
+        "Modal rápido para mover sessões entre dias e horários no mobile sem conflitos de toque",
+        "Novo painel de Diagnóstico do Sistema na aba Ajustes com captura dos últimos 30 erros em segundo plano e botão de cópia de diagnóstico para suporte imediato",
+        "Preservação integral e backup automático de segurança (localStorage) antes de qualquer normalização de dados"
+      ]
+    },
+    {
+      "version": "1.6.3",
+      "date": "2026-10-13",
+      "notes": [
+        "Menu 'Mais' (…) da navegação inferior mobile 100% corrigido: abertura de bottom sheet por cima de tudo com transição fluida",
+        "Opções completas no menu mobile: Conta em Nuvem, Atualizações, Ajustes & Aparência, Carregar Exemplo e Limpar Dados",
+        "Destaque automático da aba ativa (Atualizações e Ajustes) tanto no menu quanto no botão Mais da barra inferior",
+        "Múltiplas formas de fechar: toque fora no backdrop, botão ✕ de fechar, navegação direta e botão Voltar nativo do Android",
+        "Prevenção contra duplo disparo de toque e clique fantasma com área de toque mínima de 48px e feedback visual nos dois temas"
+      ]
+    },
+    {
+      "version": "1.6.2",
+      "date": "2026-10-13",
+      "notes": [
+        "Divisão inteligente de tópicos do edital por numeração hierárquica (divisor-topicos.js) com detecção exata de itens e subitens (7.1, 7.1.1, 1.1.4.1)",
+        "Filtro avançado contra falsos positivos: leis, decretos, súmulas, artigos e incisos preservados integralmente dentro de seus respectivos tópicos",
+        "Auto-migração de matérias já salvas ao abrir o app (com backup de segurança automático) sem necessidade de reenviar o PDF",
+        "Botões 'Reprocessar Edital' e 'Dividir por numeração' para reorganização instantânea sob demanda",
+        "Hierarquia visual refinada: tópicos principais (nível 2) com distintivo e subtópicos (níveis 3, 4 e 5) recuados e recolhíveis com setas dinâmicas",
+        "Preservação integral do progresso de estudo: status concluído, sessões e cronogramas mantidos intactos"
+      ]
+    },
+    {
+      "version": "1.6.1",
+      "date": "2026-10-13",
+      "notes": [
+        "Grade de horários corrigida: colunas proporcionais via CSS Grid sem sobreposição ou corte de cards no computador e mobile",
+        "Cards simplificados: título curto de tópico em até 2 linhas e texto completo ao tocar na sessão de estudo",
+        "Identificação precisa de matérias no edital, isolando títulos compostos com subitens na mesma linha",
+        "Revisar Divisão completo: mover tópicos entre matérias, criar novas disciplinas e renomear com backup automático de segurança",
+        "Aviso de capacidade na pré-visualização com pílulas de matérias e botões de ajuste rápido (+1 bloco, +30min, +1 dia, ajustar frequências)",
+        "Distribuição justa (Round-Robin proporcional) garantindo todas as matérias selecionadas sem dias consecutivos repetidos"
+      ]
+    },
+    {
+      "version": "1.6.0",
+      "date": "2026-10-13",
+      "notes": [
+        "Tema Escuro (Dark Mode) de alto contraste e sem cansaço visual, com alternância em 1 toque na barra superior e nos Ajustes",
+        "Sincronização com a Nuvem (Supabase): acesse seus cronogramas e matérias no computador e no celular",
+        "Leitor de PDF integrado (PDF.js) com visualização contínua, zoom, busca de texto, anotações e marcadores",
+        "Exportação de cronograma em PDF e imagem PNG em alta resolução",
+        "Múltiplos cronogramas simultâneos com alternância rápida e geração automática configurável"
+      ]
+    }
+  ]
+}
